@@ -12,4 +12,4 @@ El manual de usuario está disponible aquí: <https://docs.induxsoft.net/es/prod
 
 ## Código fuente
 
-Todo el código está escrito en Go, disponible en la carpeta [src]() 
+Todo el código está escrito en Go, disponible en la carpeta [src](https://github.com/Induxsoft/w3se/tree/main/src) 
