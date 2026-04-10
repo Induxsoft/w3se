@@ -1,0 +1,25 @@
+{
+  "name": "notifications",
+  "paths": {
+    "sse": "/notifications/stream",
+    "ws": "/notifications/ws"
+  },
+  "auth": {
+    "token_header": "Authorization",
+    "tokens": [],
+    "rate_limit": {
+      "requests_per_minute": 60,
+      "per": "ip"
+    }
+  },
+  "webhooks": {
+    "url": "http://127.0.0.1/events",
+    "method": "POST",
+    "headers": {},
+    "timeout_ms": 5000
+  },
+  "connections": {
+    "idle_timeout_ms": 300000,
+    "heartbeat_interval_ms": 30000
+  }
+}
