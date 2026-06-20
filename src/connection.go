@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -77,13 +78,18 @@ func (c *Connection) WriteLoop() {
 }
 
 func (c *Connection) writeSSE(data []byte) error {
-	_, err := c.writer.Write(data)
-	if err != nil {
-		return err
+	data = bytes.TrimRight(data, "\n")
+
+	var buf bytes.Buffer
+	for _, line := range bytes.Split(data, []byte("\n")) {
+		buf.WriteString("data: ")
+		buf.Write(line)
+		buf.WriteByte('\n')
 	}
-	// Ensure trailing newline for flush
-	if len(data) == 0 || data[len(data)-1] != '\n' {
-		c.writer.Write([]byte("\n"))
+	buf.WriteByte('\n') // línea vacía: cierra/dispara el evento
+
+	if _, err := c.writer.Write(buf.Bytes()); err != nil {
+		return err
 	}
 	if c.flusher != nil {
 		c.flusher.Flush()

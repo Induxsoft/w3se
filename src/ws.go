@@ -15,7 +15,7 @@ import (
 )
 
 const (
-	wsGUID          = "258EAFA5-E914-47DA-95CA-5AB5DC799C07"
+	wsGUID          = "258EAFA5-E914-47DA-95CA-C5AB0DC85B11"
 	wsOpText        = 1
 	wsOpClose       = 8
 	wsOpPing        = 9
